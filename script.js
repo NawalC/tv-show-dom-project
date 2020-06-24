@@ -55,22 +55,23 @@ img.setAttribute("src", episode.image.medium);
  function filterSearch(event) {
  let firstValue = event.target.value.toLowerCase();
  
+ /* done with Orhan's help*/
  let episodes = [...main.children]  // making episodes into an array
  episodes.forEach(show => {
  const showText = show.innerText.toLowerCase()
         if (showText.indexOf(firstValue) < 0) {
-          show.style.color = 'red'
-            
-        } else {
-            show.style.display = 'flex'
+          
+            show.style.display = 'none'
+        } else if (showText.indexOf(firstValue.length)){
+          
+            show.style.display = 'inline-flex'
         }
     })
   
-    let result = shows.filter(ep => getComputedStyle(ep).display == "flex")
-    displayNumber(shows, filteredEpisodes)
+    let filtered = shows.filter(ep => getComputedStyle(ep).display == "flex")
+    displayNumber(filtered, shows)
   
    
-
 
   }
  
