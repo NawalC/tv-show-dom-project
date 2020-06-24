@@ -9,8 +9,14 @@ header {
   margin-top: auto;
   border-radius: 6px;
     }
- #search-show {
-   align-items: right;
+ form {
+  float: right;
+  clear: both;
+ }
+
+ label {
+  float: right;
+  padding-right: 8px;
  }
 
 #root {

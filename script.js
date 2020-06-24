@@ -61,19 +61,23 @@ img.setAttribute("src", episode.image.medium);
  const showText = show.innerText.toLowerCase()
         if (showText.indexOf(firstValue) < 0) {
           
-            show.style.display = 'none'
+          show.style.display = 'none'
         } else if (showText.indexOf(firstValue.length)){
           
             show.style.display = 'inline-flex'
         }
     })
   
-    let filtered = shows.filter(ep => getComputedStyle(ep).display == "flex")
-    displayNumber(filtered, shows)
+  let filteredSearch = episodes.filter(ep => getComputedStyle(ep).display == "inline-flex")
+    
+    
+   const displayCount = document.getElementById('search-result')
   
-   
-
+  let  results = displayCount.innerText = `Displaying ${filteredSearch.length}/ ${episodes.length - 1}`
+  
+ clearInterval(filteredSearch)
+clearInterval(results)
   }
- 
+
 
  window.onload = setup;
