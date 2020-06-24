@@ -2,28 +2,30 @@
   box-sizing: content-box;
 }
 header {
-  clear: both;
+  
   background-color: rgb(14, 41, 66);
   padding: 15px;
-  text-align: right;
   color: white;
   margin-top: auto;
   border-radius: 6px;
     }
-
+ #search-show {
+   align-items: right;
+ }
 
 #root {
   color: black;
   background-color: rgb(189, 216, 216);
   border-radius: 6px;
 }
-  .main-wrapper {
+
+  /* .main-wrapper {
     display: flex;
     
-  }
-  .main-content {
+  } */
+  /* .main-content {
     flex: 1;
-  }
+  } */
  
    .card {
    
@@ -48,9 +50,6 @@ header {
     flex: 1;  
   }
 
-
- 
-
   .img{
     width: 100%;
   }
@@ -59,7 +58,6 @@ header {
     text-align: left;
     font-size: medium;
   }
-
 
 
   p{
