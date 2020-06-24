@@ -1,4 +1,3 @@
-//import {getAllEpisodes} from './episodes.js';
 
 //You can edit ALL of the code here
 
@@ -34,7 +33,7 @@ div.append(h4TagElem, img, pElem);
 //const showInfo = allEpisodes[0];
 
 // Use innerHTML to add text to the anchor tag
-h4TagElem.innerHTML = `${episode.name} `+  ` -S${episode.season}E0${episode.number}`
+h4TagElem.innerHTML = `${episode.name} `+  ` -S${episode.season.toString().padStart(2,'0')}E${episode.number.toString().padStart(2,'0')}`
 
 pElem.innerHTML = episode.summary;
 // use setAttribute to add the card class to the div, etc
@@ -47,6 +46,6 @@ img.setAttribute("src", episode.image.medium);
   });
  }
 
- //showInfo.forEach(allEpisode => showingAllEpisodes(allEpisode));
+ 
 
  window.onload = setup;
