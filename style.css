@@ -103,7 +103,7 @@ header {
       flex-direction: column;
     }
     .card{
-      max-width: 110vw;
+      width: 110vw;
     }
   } 
 
