@@ -1,5 +1,6 @@
 * {
   box-sizing: content-box;
+  
 }
 header {
   
@@ -12,11 +13,20 @@ header {
  form {
   float: right;
   clear: both;
+  font-size: 17px;
  }
 
  label {
   float: right;
   padding-right: 8px;
+ }
+
+ select{
+ 
+  padding: 10px;
+  font-size: 12px;
+  height: 15px;
+  
  }
 
 #root {
@@ -25,14 +35,6 @@ header {
   border-radius: 6px;
 }
 
-  /* .main-wrapper {
-    display: flex;
-    
-  } */
-  /* .main-content {
-    flex: 1;
-  } */
- 
    .card {
    
     display: inline-flex;
@@ -60,9 +62,12 @@ header {
     width: 100%;
   }
 
-  h4 {
+  h3 {
     text-align: left;
     font-size: medium;
+    border: 1px solid;
+    padding: 10px;
+    
   }
 
 
