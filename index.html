@@ -9,35 +9,24 @@
   </head>
 
   <body>
-    <header class ='header'>
-    <form id = 'search-show'>
-      <input class = 'place-holder' type="text" placeholder="Search-episodes">
-    </form>
-        <label id= "search-result"></label> 
-        <select id="select-episode" placeholder="select an episode" >
-          
-        </select>
+    <header class="header">
+      <form id="search-show">
+        <input id="search-item" type="text" placeholder="Search-episodes" />
+      </form>
+      <label id="search-result"></label>
+      <select id="select-episode" placeholder="select an episode"> </select>
     </header>
     <div id="root">
-      
-          
-  
-  
- 
-  
-
-
-      
+      <div id="episode-container"></div>
     </div>
-<footer><a class="link" href="https://www.tvmaze.com/">Credits to TVMaze.com</a>
-  </footer>
-
+    <footer>
+      <a class="link" href="https://www.tvmaze.com/">Credits to TVMaze.com</a>
+    </footer>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
-   
   </body>
 </html>
