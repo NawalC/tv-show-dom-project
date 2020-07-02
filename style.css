@@ -32,6 +32,10 @@ select {
   padding: 10px;
 }
 
+#select-episode {
+  width: 220px;
+}
+
 #episode-container {
   color: black;
   background-color: rgb(189, 216, 216);

@@ -8,7 +8,7 @@ const selectElement = document.getElementById("select-episode");
 
 function setup() {
   makePageForEpisodes(allEpisodes);
-  //selectEpisode(allEpisodes);
+  buildSelectOptions(allEpisodes);
 }
 
 function makePageForEpisodes(episodesList) {
@@ -56,46 +56,30 @@ function filterSearch() {
   makePageForEpisodes(filteredEpisodes);
 }
 
-function buildSelectOptions() {}
-// let episodes = [...main.children];
-// //Show Episode Selections
-// const selectElement = document.getElementById("select-episode");
-// function selectEpisode(episodeList) {
-//   episodeList.forEach((episode) => {
-//     let option = document.createElement("option");
-//     let episodeName = `S${episode.season
-//       .toString()
-//       .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}-${
-//       episode.name
-//     }`;
-//     option.appendChild(document.createTextNode(episodeName));
-//     option.appendChild(document.createTextNode("Please Select an Episode"));
-//     option.value = "option value";
-//     selectElement.appendChild(option);
-//   });
-// }
-// selectElement.addEventListener("change", handleSelect);
-// function handleSelect(event) {
-//   let episodeNumber = event.target[0].textContent.split("-");
+function buildSelectOptions(allEpisodes) {
+  allEpisodes.forEach((episode) => {
+    let option = document.createElement("option");
 
-//   //console.log(e.target[0].textContent);
-//   let episodes = [...main.children];
-//   console.log(episodes[0].textContent);
-//   episodes.forEach((episode) => {
-//     let episodeText = episode.innerText.toLowerCase();
-//     if (episodeText.indexOf(episodeNumber) < 0) {
-//       episode[0].style.display = "none";
-//     } else if (episodeText.indexOf(episodeNumber)) {
-//       episode.style.display = "inline-flex";
-
-//       let selectedEpisode = episode.filter(
-//         (ep) => getComputedStyle(ep).display == "inline-flex"
-//       );
-//       console.log(selectedEpisode);
-//     }
-//   });
-
-//   console.log(episodes[0]);
-// }
+    let episodeName =
+      episode.name + getSeasonAndEpisode(episode.season, episode.number);
+    option.innerText = episodeName;
+    option.value = episodeName;
+    selectElement.appendChild(option);
+  });
+}
+selectElement.addEventListener("change", handleSelect);
+function handleSelect(event) {
+  const cardList = document.querySelectorAll(".card");
+  let newList = Array.from(cardList);
+  let episodeNumber = event.target.value;
+  newList.forEach((episode) => {
+    let episodeText = episode.innerText.toLowerCase();
+    if (episodeText.indexOf(episodeNumber.toLowerCase()) < 0) {
+      episode.style.display = "none";
+    } else {
+      episode.style.display = "inline-flex";
+    }
+  });
+}
 
 window.onload = setup;
