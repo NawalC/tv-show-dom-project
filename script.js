@@ -1,15 +1,27 @@
-//You can edit ALL of the code here
-const allEpisodes = getAllEpisodes();
+function getEpisodes() {
+  fetch("https://api.tvmaze.com/shows/82/episodes")
+    .then((response) => {
+      return response.json();
+    })
+
+    .then((data) => {
+      makePageForEpisodes(data);
+      buildSelectOptions(data);
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+}
+//const allEpisodes = getAllEpisodes();
+let allEpisodes;
 const containerEl = document.getElementById("episode-container");
 const rootElem = document.getElementById("root");
 const searchBar = document.getElementById("search-item");
 const displayCount = document.getElementById("search-result");
 const selectElement = document.getElementById("select-episode");
 
-function setup() {
-  makePageForEpisodes(allEpisodes);
-  buildSelectOptions(allEpisodes);
-}
+function setup() {}
 
 function makePageForEpisodes(episodesList) {
   containerEl.innerHTML = "";
@@ -82,4 +94,4 @@ function handleSelect(event) {
   });
 }
 
-window.onload = setup;
+window.onload = getEpisodes();
