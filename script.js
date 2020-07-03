@@ -1,7 +1,7 @@
 let allEpisodes;
 
 function getEpisodes() {
-  fetch("https://api.tvmaze.com/shows/82/episodes")
+  fetch("https://api.tvmaze.com/shows/22036/episodes")
     .then((response) => {
       return response.json();
     })

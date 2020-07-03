@@ -52,7 +52,8 @@ select {
   border: 2px #f0e68c solid;
   border-radius: 8px;
   max-width: 18rem;
-  height: 28rem;
+  height: 40rem;
+  max-height: fit-content;
   background-color: rgb(196, 235, 231);
   flex: 0 1 calc(25% - 1em);
   margin: 1rem 1rem 1rem 4rem;
