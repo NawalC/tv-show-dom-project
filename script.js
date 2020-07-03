@@ -1,3 +1,5 @@
+let allEpisodes;
+
 function getEpisodes() {
   fetch("https://api.tvmaze.com/shows/82/episodes")
     .then((response) => {
@@ -5,6 +7,7 @@ function getEpisodes() {
     })
 
     .then((data) => {
+      allEpisodes = data;
       makePageForEpisodes(data);
       buildSelectOptions(data);
       // createCard();
@@ -16,14 +19,14 @@ function getEpisodes() {
     });
 }
 //const allEpisodes = getAllEpisodes();
-let allEpisodes;
+
 const containerEl = document.getElementById("episode-container");
 const rootElem = document.getElementById("root");
 const searchBar = document.getElementById("search-item");
 const displayCount = document.getElementById("search-result");
 const selectElement = document.getElementById("select-episode");
 
-function setup() {}
+function setup() { }
 
 function makePageForEpisodes(episodesList) {
   containerEl.innerHTML = "";
@@ -60,16 +63,14 @@ function getSeasonAndEpisode(season, episode) {
   //       .toString()
   //       .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
 }
-searchBar.addEventListener("keyup", filterSearch);
+searchBar.addEventListener("keyup", () => filterSearch(allEpisodes));
 
 function filterSearch(allEpisodes) {
   let searchTerm = searchBar.value.toLowerCase();
-  console.log(searchTerm);
-
-  let filteredEpisodes = Object.values(allEpisodes).filter((episode) => {
+  let filteredEpisodes = allEpisodes.filter((episode) => {
     return (episode.name + episode.summary).toLowerCase().includes(searchTerm);
   });
-  displayCount.innerText = `Displaying ${filteredEpisodes.length}/ ${episode.length}`;
+  displayCount.innerText = `Displaying ${filteredEpisodes.length}/ ${allEpisodes.length}`;
 }
 
 function buildSelectOptions(allEpisodes) {
