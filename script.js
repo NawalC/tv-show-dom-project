@@ -26,7 +26,7 @@ const searchBar = document.getElementById("search-item");
 const displayCount = document.getElementById("search-result");
 const selectElement = document.getElementById("select-episode");
 
-function setup() { }
+function setup() {}
 
 function makePageForEpisodes(episodesList) {
   containerEl.innerHTML = "";
@@ -70,6 +70,7 @@ function filterSearch(allEpisodes) {
   let filteredEpisodes = allEpisodes.filter((episode) => {
     return (episode.name + episode.summary).toLowerCase().includes(searchTerm);
   });
+  makePageForEpisodes(filteredEpisodes);
   displayCount.innerText = `Displaying ${filteredEpisodes.length}/ ${allEpisodes.length}`;
 }
 
