@@ -7,6 +7,8 @@ function getEpisodes() {
     .then((data) => {
       makePageForEpisodes(data);
       buildSelectOptions(data);
+      // createCard();
+      filterSearch(data);
     })
 
     .catch((error) => {
@@ -26,7 +28,6 @@ function setup() {}
 function makePageForEpisodes(episodesList) {
   containerEl.innerHTML = "";
   episodesList.forEach((episode) => createCard(episode));
-  displayCount.innerText = `Displaying ${episodesList.length}/ ${allEpisodes.length}`;
 }
 
 function createCard(episode) {
@@ -60,20 +61,23 @@ function getSeasonAndEpisode(season, episode) {
   //       .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
 }
 searchBar.addEventListener("keyup", filterSearch);
-function filterSearch() {
+
+function filterSearch(allEpisodes) {
   let searchTerm = searchBar.value.toLowerCase();
-  let filteredEpisodes = allEpisodes.filter((episode) => {
+  console.log(searchTerm);
+
+  let filteredEpisodes = Object.values(allEpisodes).filter((episode) => {
     return (episode.name + episode.summary).toLowerCase().includes(searchTerm);
   });
-  makePageForEpisodes(filteredEpisodes);
+  displayCount.innerText = `Displaying ${filteredEpisodes.length}/ ${episode.length}`;
 }
 
 function buildSelectOptions(allEpisodes) {
   allEpisodes.forEach((episode) => {
     let option = document.createElement("option");
-
     let episodeName =
       episode.name + getSeasonAndEpisode(episode.season, episode.number);
+
     option.innerText = episodeName;
     option.value = episodeName;
     selectElement.appendChild(option);
@@ -86,6 +90,7 @@ function handleSelect(event) {
   let episodeNumber = event.target.value;
   newList.forEach((episode) => {
     let episodeText = episode.innerText.toLowerCase();
+
     if (episodeText.indexOf(episodeNumber.toLowerCase()) < 0) {
       episode.style.display = "none";
     } else {
