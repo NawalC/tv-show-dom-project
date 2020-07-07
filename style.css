@@ -30,7 +30,7 @@ h1 {
   font-size: 60px;
   padding-left: 450px;
 }
-#search-item {
+#search-bar {
   text-align: left;
   font-size: medium;
   border: 1px solid;
@@ -43,22 +43,30 @@ h1 {
 
 #episode-container {
   color: black;
-  background-color: rgb(189, 216, 216);
+
   border-radius: 6px;
+}
+#root {
+  display: flex;
+  flex-flow: row wrap;
+  background-color: rgb(189, 216, 216);
 }
 
 .card {
   display: inline-flex;
   flex-basis: auto;
+  flex-flow: column;
+  flex-grow: 1;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
   border: 2px #f0e68c solid;
   border-radius: 8px;
-  max-width: 15rem;
-  height: 30rem;
-  max-height: fit-content;
+  width: 18rem;
+  min-height: 100vh;
+  height: max-content;
+
   background-color: rgb(196, 235, 231);
   flex: 0 1 calc(25% - 1em);
   margin: 1rem 1rem 1rem 4rem;
@@ -90,15 +98,12 @@ p {
 /* Style the footer */
 footer {
   background-color: rgb(14, 41, 66);
-  padding: 15px;
-  text-align: right;
-  color: white;
-  margin-top: auto;
-  min-height: fit-content;
-  clear: both;
-  bottom: 0px;
-  position: relative;
+  position: fixed;
+  left: 0;
   bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
 }
 
 .link {
