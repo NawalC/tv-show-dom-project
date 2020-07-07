@@ -16423,4 +16423,3 @@ function getAllShows() {
 
 }
 
-export {getOneShow}

@@ -1,31 +1,36 @@
 let allEpisodes;
+let allShows = getAllShows();
+let showId;
 
-function getEpisodes() {
-  fetch("https://api.tvmaze.com/shows/22036/episodes")
+function getEpisodes(url) {
+  if (showId === undefined) {
+    showId = 82;
+  }
+  fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
     .then((response) => {
       return response.json();
     })
 
     .then((data) => {
       allEpisodes = data;
+      //allShows = data
       makePageForEpisodes(data);
       buildSelectOptions(data);
-      // createCard();
+      buildSelectAllShows(data);
       filterSearch(data);
     })
-
     .catch((error) => {
       console.log(error);
     });
 }
-//const allEpisodes = getAllEpisodes();
 
 const containerEl = document.getElementById("episode-container");
 const rootElem = document.getElementById("root");
 const searchBar = document.getElementById("search-item");
 const displayCount = document.getElementById("search-result");
 const selectElement = document.getElementById("select-episode");
-
+const showSelector = document.getElementById("select-show");
+//let showId = event.target.value;
 function setup() {}
 
 function makePageForEpisodes(episodesList) {
@@ -89,6 +94,7 @@ selectElement.addEventListener("change", handleSelect);
 function handleSelect(event) {
   const cardList = document.querySelectorAll(".card");
   let newList = Array.from(cardList);
+
   let episodeNumber = event.target.value;
   newList.forEach((episode) => {
     let episodeText = episode.innerText.toLowerCase();
@@ -100,5 +106,45 @@ function handleSelect(event) {
     }
   });
 }
+
+function buildSelectAllShows() {
+  allShows.forEach((show) => {
+    //selectElement.innerHTML = "";
+    let option = document.createElement("option");
+    //defaultSelect.textContent = "Select a show";
+    option.innerText = show.name;
+    option.value = show.id;
+    showSelector.appendChild(option);
+  });
+}
+
+showSelector.addEventListener("change", function (event) {
+  let showId = event.target.value;
+});
+
+// alphabetical order of shows
+allShows.sort((a, b) => {
+  let showOne = a.name.toLowerCase();
+  let showTwo = b.name.toLowerCase();
+
+  if (showOne < showTwo) return -1;
+  if (showOne > showTwo) return 1;
+});
+// showSelector.addEventListener("change", handleSelect);
+// const url = `https://api.tvmaze.com/shows/${showId}/episodes`;
+// function handleSelect(event) {
+// const cardList = document.querySelectorAll(".card");
+// let newList = Array.from(cardList);
+// console.log(newList);
+// showId = event.target.value;
+// newList.forEach((show) => {
+//   let episodeText = show.innerText.toLowerCase();
+
+//   if (episodeText.indexOf(showId.toLowerCase()) < 0) {
+//     show.style.display = "none";
+//   } else {
+//     show.style.display = "inline-flex";
+//   }
+// });
 
 window.onload = getEpisodes();

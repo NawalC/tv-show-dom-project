@@ -25,6 +25,11 @@ select {
   height: 15px;
 }
 
+h1 {
+  font: outline;
+  font-size: 60px;
+  padding-left: 450px;
+}
 #search-item {
   text-align: left;
   font-size: medium;
@@ -51,8 +56,8 @@ select {
   padding: 1rem;
   border: 2px #f0e68c solid;
   border-radius: 8px;
-  max-width: 18rem;
-  height: 40rem;
+  max-width: 15rem;
+  height: 30rem;
   max-height: fit-content;
   background-color: rgb(196, 235, 231);
   flex: 0 1 calc(25% - 1em);
@@ -84,12 +89,16 @@ p {
 
 /* Style the footer */
 footer {
-  clear: both;
   background-color: rgb(14, 41, 66);
   padding: 15px;
   text-align: right;
   color: white;
   margin-top: auto;
+  min-height: fit-content;
+  clear: both;
+  bottom: 0px;
+  position: relative;
+  bottom: 0;
 }
 
 .link {

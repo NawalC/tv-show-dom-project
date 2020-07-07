@@ -10,9 +10,12 @@
 
   <body>
     <header class="header">
+      <div><h1>TV Shows</h1></div>
       <form id="search-show">
         <input id="search-item" type="text" placeholder="Search-episodes" />
       </form>
+      <label id="search-shows"></label>
+      <select id="select-show" placeholder="Select an show"> </select>
       <label id="search-result"></label>
       <select id="select-episode" placeholder="Select an episode"> </select>
     </header>
@@ -20,10 +23,13 @@
       <div id="episode-container"></div>
     </div>
     <footer>
-      <a class="link" href="https://www.tvmaze.com/">Data from TVMaze.com</a>
+      <a class="link" href="https://www.tvmaze.com/"
+        >This content is from TV Maze</a
+      >
     </footer>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+    <script src=" shows.js"></script>
     <script src="episodes.js"></script>
 
     <!-- Loads YOUR javascript code -->
