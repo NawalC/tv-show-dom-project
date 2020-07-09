@@ -1,4 +1,3 @@
-let allEpisodes;
 let allShows = getAllShows();
 let showId;
 let unfoundImgSrc =
@@ -98,7 +97,10 @@ function searchShows() {
   getEpisodes is called when a show is selected
   makePageForEpisodes is called in different places to create the html page for episodes*/
 
-searchBar.addEventListener("keyup", () => searchEpisodes(allEpisodes));
+function setUpSearchEpisodesEventListener(data) {
+  searchBar.addEventListener("keyup", (event) => searchEpisodes(data, event));
+}
+
 selectElement.addEventListener("change", handleSelect);
 //whenever a show is selected, we are converting to episodes page and hide any show parts
 function hideShowRelatedParts() {
@@ -122,6 +124,7 @@ function getEpisodes() {
       .then((data) => {
         makePageForEpisodes(data);
         buildEpisodeOptions(data);
+        setUpSearchEpisodesEventListener(data);
       })
       .catch((error) => {
         console.log(error);
@@ -167,10 +170,9 @@ function getSeasonAndEpisode(season, episode) {
   //       .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
 }
 
-function searchEpisodes(allEpisodes) {
+function searchEpisodes(allEpisodes, event) {
   let searchTerm = event.target.value.toLowerCase();
   let filteredEpisodes = allEpisodes.filter((episode) => {
-    console.log(filteredEpisodes);
     return (episode.name + episode.summary).toLowerCase().includes(searchTerm);
   });
 
