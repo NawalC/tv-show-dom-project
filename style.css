@@ -56,30 +56,44 @@ h1 {
   display: inline-flex;
   flex-basis: auto;
   flex-flow: column;
-  flex-grow: 1;
+  flex-shrink: 0;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
   border: 2px #f0e68c solid;
   border-radius: 8px;
-  width: 18rem;
-  min-height: 100vh;
-  height: max-content;
-
+  width: 12rem;
+  overflow-y: auto;
+  height: 20rem;
+  scrollbar-width: none;
   background-color: rgb(196, 235, 231);
   flex: 0 1 calc(25% - 1em);
   margin: 1rem 1rem 1rem 4rem;
 }
+.card::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.card::-webkit-scrollbar {
+  display: none;
+}
+
 .card-block {
   padding: 10px;
   background-color: #fff;
   flex: 1;
 }
 
-.img {
+.showListing-card {
+  padding: 10px;
+  background-color: #fff;
+  flex: 1;
+}
+img {
   display: inline-block;
-  width: 100%;
+  width: 75%;
+  height: 50%;
 }
 
 .episode-info {
@@ -118,6 +132,6 @@ footer {
     flex-direction: column;
   }
   .card {
-    width: 110vw;
+    width: 50vw;
   }
 }

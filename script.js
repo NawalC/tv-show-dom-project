@@ -1,4 +1,3 @@
-let allEpisodes;
 let allShows = getAllShows();
 let showId;
 let unfoundImgSrc =
@@ -52,7 +51,8 @@ function createCardForShow(show) {
   cardEl.classList = "card";
   const titleEl = document.createElement("h3");
   titleEl.classList = "episode-info";
-  const summaryEl = document.createElement("p");
+  const summaryEl = document.createElement("div");
+
   const img = document.createElement("img");
   titleEl.textContent = show.name;
   if (show.image != undefined) {
@@ -62,13 +62,15 @@ function createCardForShow(show) {
   }
 
   summaryEl.innerHTML = show.summary;
-  cardEl.append(titleEl, img, summaryEl);
+  cardEl.prepend(titleEl);
+  cardEl.append(img, summaryEl);
   containerEl.appendChild(cardEl);
 }
+
 function buildShowOptions(allShows) {
   showSelector.innerHTML = "";
   let ShowAlloption = document.createElement("option");
-  ShowAlloption.innerText = "select a show";
+  ShowAlloption.innerText = "Show all shows";
   ShowAlloption.value = "all";
   showSelector.appendChild(ShowAlloption);
   allShows.forEach((show) => {
@@ -78,6 +80,17 @@ function buildShowOptions(allShows) {
     showSelector.appendChild(option);
   });
 }
+
+// function createShowsListing(allShow) {
+//   const showListing = document.createElement("div");
+//   showListing.className = "showListing-card";
+//   showListing.innerHTML = `<em>Genres: ${show.genres}</em>
+//   <em>Status: ${show.status}</em>
+//   <p>Rating: ${show.rating.average}</p>
+//   <p>Runtime: ${show.runtime}</p>`;
+//   cardEl.appendChild(showListing);
+//   return showListing;
+// }
 
 //Search shows
 function searchShows() {
@@ -91,6 +104,8 @@ function searchShows() {
   getShows(filteredShows);
 }
 
+function displayNumberOfShows() {}
+
 //-----Getting Episodes Page
 
 /* 
@@ -98,7 +113,9 @@ function searchShows() {
   getEpisodes is called when a show is selected
   makePageForEpisodes is called in different places to create the html page for episodes*/
 
-searchBar.addEventListener("keyup", () => searchEpisodes(allEpisodes));
+function setUpSearchEpisodesEventListener(data) {
+  searchBar.addEventListener("keyup", (event) => searchEpisodes(data, event));
+}
 selectElement.addEventListener("change", handleSelect);
 //whenever a show is selected, we are converting to episodes page and hide any show parts
 function hideShowRelatedParts() {
@@ -122,6 +139,7 @@ function getEpisodes() {
       .then((data) => {
         makePageForEpisodes(data);
         buildEpisodeOptions(data);
+        setUpSearchEpisodesEventListener(data);
       })
       .catch((error) => {
         console.log(error);
@@ -167,10 +185,9 @@ function getSeasonAndEpisode(season, episode) {
   //       .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}`;
 }
 
-function searchEpisodes(allEpisodes) {
+function searchEpisodes(allEpisodes, event) {
   let searchTerm = event.target.value.toLowerCase();
   let filteredEpisodes = allEpisodes.filter((episode) => {
-    console.log(filteredEpisodes);
     return (episode.name + episode.summary).toLowerCase().includes(searchTerm);
   });
 
